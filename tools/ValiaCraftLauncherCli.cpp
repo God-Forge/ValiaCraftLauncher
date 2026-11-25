@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Copyright (C) 2026 neolxsky
 //
-// mcPacker 命令行入口：用于脚本化打包/解包，以及自动化测试。
-// GUI 主程序（mcPacker.exe）无窗口，本程序为控制台程序（mcPackerCli.exe）。
+// ValiaCraftLauncher 命令行入口：用于脚本化打包/解包，以及自动化测试。
+// GUI 主程序（ValiaCraftLauncher.exe）无窗口，本程序为控制台程序（ValiaCraftLauncherCli.exe）。
 
 #include "core/Common.h"
 #include "core/JavaScanner.h"
@@ -309,12 +309,12 @@ int runSelfTest(bool verbose)
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
-    QCoreApplication::setApplicationName(QStringLiteral("mcPackerCli"));
+    QCoreApplication::setApplicationName(QStringLiteral("ValiaCraftLauncherCli"));
     QCoreApplication::setApplicationVersion(QStringLiteral(MCPACKER_VERSION));
 
     QCommandLineParser parser;
     parser.setApplicationDescription(
-        QStringLiteral("mcPacker 命令行工具：打包/解包 Minecraft 整合包（作者：neolxsky）"));
+        QStringLiteral("ValiaCraftLauncher 命令行工具：打包/解包 Minecraft 整合包（作者：neolxsky）"));
     parser.addHelpOption();
 
     const QCommandLineOption listOpt(QStringLiteral("list"), QStringLiteral("列出游戏目录中的版本"));

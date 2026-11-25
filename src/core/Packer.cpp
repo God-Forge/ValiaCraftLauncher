@@ -333,7 +333,7 @@ PackResult Packer::run(const PackRequest &request)
     // 2. 组装 manifest 与 PCL 配置
     // ------------------------------------------------------------------
     PackManifest manifest;
-    manifest.tool = QStringLiteral("mcPacker " MCPACKER_VERSION);
+    manifest.tool = QStringLiteral("ValiaCraftLauncher " MCPACKER_VERSION);
     manifest.createdAt = QDateTime::currentDateTime().toString(Qt::ISODate);
     manifest.version = version;
     manifest.version.isolated = version.isolated;

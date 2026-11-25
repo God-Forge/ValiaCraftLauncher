@@ -512,7 +512,7 @@ void PackPage::onBrowseOutput()
                                       + QStringLiteral(".mcpk"));
     }
     QString path = QFileDialog::getSaveFileName(this, QStringLiteral("保存整合包"), start,
-                                                QStringLiteral("mcPacker 整合包 (*.mcpk);;"
+                                                QStringLiteral("ValiaCraftLauncher 整合包 (*.mcpk);;"
                                                                "ZIP 压缩包 (*.zip);;所有文件 (*.*)"));
     if (path.isEmpty())
         return;

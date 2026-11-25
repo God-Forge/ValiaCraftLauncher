@@ -1,6 +1,6 @@
 # .mcpk 包格式说明
 
-`.mcpk` 是标准 ZIP 文件（`application/zip`），可用 7-Zip / WinRAR / Windows 资源管理器直接打开。mcPacker 只额外依赖根目录的 `manifest.json` 来描述包内容。
+`.mcpk` 是标准 ZIP 文件（`application/zip`），可用 7-Zip / WinRAR / Windows 资源管理器直接打开。ValiaCraftLauncher 只额外依赖根目录的 `manifest.json` 来描述包内容。
 
 ## 目录布局
 
@@ -24,7 +24,7 @@ assets/...                             # 可选
 {
   "format": "mcpacker",
   "formatVersion": 1,
-  "tool": "mcPacker 0.1.0",
+  "tool": "ValiaCraftLauncher 0.1.0",
   "createdAt": "2026-11-24T13:22:00+08:00",
   "version": {
     "id": "GTL十周目",

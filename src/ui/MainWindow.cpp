@@ -21,7 +21,7 @@ MainWindow::MainWindow(const QString &initialGameDir, const QString &initialPack
                        QWidget *parent)
     : QMainWindow(parent)
 {
-    setWindowTitle(QStringLiteral("mcPacker — Minecraft 整合包打包器"));
+    setWindowTitle(QStringLiteral("ValiaCraftLauncher — Minecraft 整合包打包器"));
     resize(1080, 760);
 
     m_log = new LogPanel(this);
@@ -56,7 +56,7 @@ MainWindow::MainWindow(const QString &initialGameDir, const QString &initialPack
             [this](bool busy) { statusBar()->showMessage(busy ? QStringLiteral("正在处理…")
                                                               : QStringLiteral("就绪")); });
 
-    m_log->appendInfo(QStringLiteral("欢迎使用 mcPacker：支持打包/解包 Minecraft 版本与 Java 运行时，"
+    m_log->appendInfo(QStringLiteral("欢迎使用 ValiaCraftLauncher：支持打包/解包 Minecraft 版本与 Java 运行时，"
                                      "并自动写入 PCL（Plain Craft Launcher 2）配置。"));
     m_log->appendInfo(QStringLiteral("作者：neolxsky · Copyright © 2026 neolxsky"));
 }
@@ -84,11 +84,11 @@ void MainWindow::buildMenus()
     fileMenu->addAction(exitAction);
 
     auto *helpMenu = menuBar()->addMenu(QStringLiteral("帮助(&H)"));
-    auto *aboutAction = new QAction(QStringLiteral("关于 mcPacker"), this);
+    auto *aboutAction = new QAction(QStringLiteral("关于 ValiaCraftLauncher"), this);
     connect(aboutAction, &QAction::triggered, this, [this] {
         QMessageBox::about(
-            this, QStringLiteral("关于 mcPacker"),
-            QStringLiteral("<h3>mcPacker %1</h3>"
+            this, QStringLiteral("关于 ValiaCraftLauncher"),
+            QStringLiteral("<h3>ValiaCraftLauncher %1</h3>"
                            "<p><b>作者：neolxsky</b><br>"
                            "Copyright © 2026 neolxsky · GNU GPL v3.0 or later</p>"
                            "<p>基于 C++20 + Qt %2 的 Minecraft 整合包打包器。</p>"

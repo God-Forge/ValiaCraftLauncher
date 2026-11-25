@@ -1,4 +1,4 @@
-# mcPacker — Minecraft 整合包打包器
+# ValiaCraftLauncher — Minecraft 整合包打包器
 
 **作者：neolxsky** · Copyright © 2026 neolxsky · [GNU GPL v3.0 or later](LICENSE)
 
@@ -6,7 +6,7 @@
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│  mcPacker — Minecraft 整合包打包器                            │
+│  ValiaCraftLauncher — Minecraft 整合包打包器                            │
 │  ┌─────────┐ ┌─────────┐                                     │
 │  │  打包   │ │  解包   │   选择版本 + Java → 生成 .mcpk        │
 │  └─────────┘ └─────────┘                                     │
@@ -28,14 +28,14 @@
 - **Java 探测**：扫描 PATH、`JAVA_HOME`、常见 JDK 安装目录（Oracle / Adoptium / Microsoft / Zulu / Corretto / GraalVM / Liberica）、`~/.jdks`、`~/.gradle/jdks`、游戏自带 `runtime/`，并通过 `java -XshowSettings:properties -version` 解析版本/厂商/架构。
 - **解包选项**：冲突策略（覆盖 / 跳过 / 重命名保留两者）、可重命名版本避免覆盖、自动修正版本 json 的 `id`。
 - **零外部依赖**：ZIP 读写（含 Zip64、deflate、UTF-8 文件名）与 PCL ini 处理全部自研，不依赖 7-Zip / zlib 动态库。
-- **命令行工具**：`mcPackerCli.exe` 支持脚本化打包/解包与内置自测（见下文）。
+- **命令行工具**：`ValiaCraftLauncherCli.exe` 支持脚本化打包/解包与内置自测（见下文）。
 
 ## 包格式（.mcpk）
 
 `.mcpk` 就是标准 ZIP（可用 7-Zip、WinRAR、系统解压直接打开），根目录额外带一个 `manifest.json`：
 
 ```
-manifest.json                 # mcPacker 清单（版本、Java、选项、来源）
+manifest.json                 # ValiaCraftLauncher 清单（版本、Java、选项、来源）
 PCL/Setup.ini                 # 全局 PCL 配置模板（LaunchFolderSelect 使用 {{GAME_DIR}} 占位符）
 versions/<版本>/              # 版本目录（json / jar / mods / config / saves …）
 versions/<版本>/PCL/Setup.ini # 版本级 PCL 配置模板（Java 路径使用 {{JAVA_HOME}} 占位符）
@@ -88,17 +88,17 @@ PCL2 的配置文件采用 `Key:Value` 格式（**不是** `Key=Value`），UTF-
 
 # 指定 Qt 路径 / 清理重编 / 自定义分发目录
 .\build.ps1 -QtDir D:\Qt\6.8.3\mingw_64 -Clean -Deploy
-.\build.ps1 -Deploy -DistDir D:\mcPacker
+.\build.ps1 -Deploy -DistDir D:\ValiaCraftLauncher
 ```
 
-脚本会自动定位 Qt 与 MinGW；**当项目路径包含中文时**，会自动在 `%LOCALAPPDATA%\mcPacker\src` 建立 junction 并把构建目录放到 `%LOCALAPPDATA%\mcPacker\build`（MinGW make 无法处理非 ASCII 源码路径，这是必要变通）。
+脚本会自动定位 Qt 与 MinGW；**当项目路径包含中文时**，会自动在 `%LOCALAPPDATA%\ValiaCraftLauncher\src` 建立 junction 并把构建目录放到 `%LOCALAPPDATA%\ValiaCraftLauncher\build`（MinGW make 无法处理非 ASCII 源码路径，这是必要变通）。
 
 部署产物默认在项目的 `dist\` 下，自带全部运行依赖：
 
 ```
 dist\
-├─ mcPacker.exe      # 图形界面（双击运行，无需安装 Qt）
-├─ mcPackerCli.exe   # 命令行工具
+├─ ValiaCraftLauncher.exe      # 图形界面（双击运行，无需安装 Qt）
+├─ ValiaCraftLauncherCli.exe   # 命令行工具
 ├─ Qt6Core/Gui/Widgets/Network/Svg.dll
 ├─ libstdc++-6 / libgcc_s_seh-1 / libwinpthread-1.dll
 └─ platforms\ styles\ imageformats\ tls\ networkinformation\ generic\ iconengines\
@@ -136,22 +136,22 @@ cmake --build build --target deploy     # 可选：在项目的 dist/ 下收集 
 
 ```powershell
 # 列出某游戏目录下的版本
-mcPackerCli.exe --list --game "D:\PCL-latest\.minecraft"
+ValiaCraftLauncherCli.exe --list --game "D:\PCL-latest\.minecraft"
 
 # 打包：版本 + 打包 Java 运行时（自动写入 PCL 配置）
-mcPackerCli.exe --pack --game "D:\PCL-latest\.minecraft" --version "GTL十周目" `
+ValiaCraftLauncherCli.exe --pack --game "D:\PCL-latest\.minecraft" --version "GTL十周目" `
   --java "C:\Program Files\Java\jre1.8.0_491\bin\java.exe" `
   --out "D:\out\GTL.mcpk"
 
 # 打包：额外带 libraries/assets，排除实例根目录文件
-mcPackerCli.exe --pack --game ... --version ... --libraries --assets --no-instance
+ValiaCraftLauncherCli.exe --pack --game ... --version ... --libraries --assets --no-instance
 
 # 解包：覆盖冲突文件，并重命名版本
-mcPackerCli.exe --unpack --package "D:\out\GTL.mcpk" --target "E:\MC\.minecraft" `
+ValiaCraftLauncherCli.exe --unpack --package "D:\out\GTL.mcpk" --target "E:\MC\.minecraft" `
   --policy overwrite --version-name "GTL-副本"
 
 # 内置自测（打包→解包→校验 PCL 配置，约 1 秒）
-mcPackerCli.exe --selftest
+ValiaCraftLauncherCli.exe --selftest
 ```
 
 `--policy` 取值：`skip`（默认，保留已有文件）、`overwrite`、`rename`。
@@ -160,15 +160,15 @@ mcPackerCli.exe --selftest
 ### 启动参数
 
 ```
-mcPacker.exe --game <路径>        # 打开界面并定位到该游戏目录
-mcPacker.exe --unpack <文件>      # 打开界面并预填要解包的整合包
-mcPacker.exe --screenshot <png>   # 调试用：截图后退出（配合 QT_QPA_PLATFORM=offscreen）
+ValiaCraftLauncher.exe --game <路径>        # 打开界面并定位到该游戏目录
+ValiaCraftLauncher.exe --unpack <文件>      # 打开界面并预填要解包的整合包
+ValiaCraftLauncher.exe --screenshot <png>   # 调试用：截图后退出（配合 QT_QPA_PLATFORM=offscreen）
 ```
 
 ## 项目结构
 
 ```
-mcPacker/
+ValiaCraftLauncher/
 ├─ CMakeLists.txt              # 构建定义（core 静态库 + GUI + CLI + deploy 目标）
 ├─ CMakePresets.json
 ├─ build.ps1                   # 一键构建（自动处理中文路径 / 可选代码签名）
@@ -196,7 +196,7 @@ mcPacker/
 │     ├─ PackPage              # 打包页
 │     ├─ UnpackPage            # 解包页（支持拖放）
 │     └─ LogPanel              # 彩色日志面板
-├─ tools/mcPackerCli.cpp       # 命令行 + 自测
+├─ tools/ValiaCraftLauncherCli.cpp       # 命令行 + 自测
 └─ docs/
    ├─ mcpk-format.md           # 包格式说明
    └─ pcl-compat.md            # PCL 配置兼容说明
@@ -236,4 +236,4 @@ exe 已内嵌作者版本信息（资源管理器 → 属性 → 详细信息可
 .\build.ps1 -Deploy -Sign -CertFile D:\cert\neolxsky.pfx -CertPassword <密码>
 ```
 
-脚本会自动查找 `signtool.exe`（Windows SDK），使用 SHA-256 + 时间戳服务器完成签名，签名后可用 `signtool verify /pa dist\mcPacker.exe` 校验。
+脚本会自动查找 `signtool.exe`（Windows SDK），使用 SHA-256 + 时间戳服务器完成签名，签名后可用 `signtool verify /pa dist\ValiaCraftLauncher.exe` 校验。

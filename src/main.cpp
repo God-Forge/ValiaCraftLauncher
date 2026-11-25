@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 // Copyright (C) 2026 neolxsky
 //
-// mcPacker — Minecraft 整合包打包器（GUI 入口）
+// ValiaCraftLauncher — Minecraft 整合包打包器（GUI 入口）
 
 #include "ui/MainWindow.h"
 
@@ -16,8 +16,8 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    QApplication::setOrganizationName(QStringLiteral("mcPacker"));
-    QApplication::setApplicationName(QStringLiteral("mcPacker"));
+    QApplication::setOrganizationName(QStringLiteral("ValiaCraftLauncher"));
+    QApplication::setApplicationName(QStringLiteral("ValiaCraftLauncher"));
     QApplication::setApplicationVersion(QStringLiteral(MCPACKER_VERSION));
     QApplication::setWindowIcon(QIcon(QStringLiteral(":/app_icon.png")));
 

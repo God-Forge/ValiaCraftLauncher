@@ -58,7 +58,7 @@ PackManifest PackManifest::fromJson(const QJsonObject &object, bool *ok)
         valid = false;
 
     manifest.formatVersion = object.value(QStringLiteral("formatVersion")).toInt(kFormatVersion);
-    manifest.tool = object.value(QStringLiteral("tool")).toString(QStringLiteral("mcPacker"));
+    manifest.tool = object.value(QStringLiteral("tool")).toString(QStringLiteral("ValiaCraftLauncher"));
     manifest.createdAt = object.value(QStringLiteral("createdAt")).toString();
 
     const QJsonObject versionObj = object.value(QStringLiteral("version")).toObject();

@@ -1,4 +1,4 @@
-/* mcPacker 版本资源 —— 作者：neolxsky */
+/* ValiaCraftLauncher 版本资源 —— 作者：neolxsky */
 #include <windows.h>
 
 1 ICON "app.ico"
@@ -19,12 +19,12 @@ BEGIN
             VALUE "Author", "neolxsky"
             VALUE "Comments", "Pack/unpack Minecraft versions with bundled Java runtime; PCL2 compatible"
             VALUE "CompanyName", "neolxsky"
-            VALUE "FileDescription", "mcPacker - Minecraft Modpack Packer"
+            VALUE "FileDescription", "ValiaCraftLauncher - Minecraft Modpack Packer"
             VALUE "FileVersion", "0.1.0.0"
-            VALUE "InternalName", "mcPacker"
+            VALUE "InternalName", "ValiaCraftLauncher"
             VALUE "LegalCopyright", "Copyright (C) 2026 neolxsky"
-            VALUE "OriginalFilename", "mcPacker.exe"
-            VALUE "ProductName", "mcPacker"
+            VALUE "OriginalFilename", "ValiaCraftLauncher.exe"
+            VALUE "ProductName", "ValiaCraftLauncher"
             VALUE "ProductVersion", "0.1.0.0"
         END
     END

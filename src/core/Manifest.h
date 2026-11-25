@@ -7,7 +7,7 @@
 
 namespace mcpacker {
 
-/// mcPacker 自定义包格式（.mcpk，本质是 ZIP）的清单。
+/// ValiaCraftLauncher 自定义包格式（.mcpk，本质是 ZIP）的清单。
 /// 包根目录的 manifest.json 描述版本、Java、打包选项与来源。
 struct PackManifest
 {
@@ -15,7 +15,7 @@ struct PackManifest
     static constexpr const char *kFileName = "manifest.json";
 
     int formatVersion = kFormatVersion;
-    QString tool = QStringLiteral("mcPacker");
+    QString tool = QStringLiteral("ValiaCraftLauncher");
     QString createdAt;
     VersionInfo version;
 

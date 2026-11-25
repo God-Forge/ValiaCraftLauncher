@@ -107,7 +107,7 @@ bool Unpacker::inspect(const QString &packagePath, PackManifest *manifest, QStri
     const ZipEntry *entry = reader.find(QString::fromLatin1(PackManifest::kFileName));
     if (!entry) {
         if (error)
-            *error = QStringLiteral("压缩包内没有 manifest.json，可能不是 mcPacker 生成的整合包");
+            *error = QStringLiteral("压缩包内没有 manifest.json，可能不是 ValiaCraftLauncher 生成的整合包");
         return false;
     }
     QString readError;
@@ -392,7 +392,7 @@ UnpackResult Unpacker::run(const UnpackRequest &request)
 
     // 保存一份导入记录（便于日后排查）
     if (hasManifest) {
-        const QString recordDir = QDir(gameDir).absoluteFilePath(QStringLiteral("PCL/mcPacker"));
+        const QString recordDir = QDir(gameDir).absoluteFilePath(QStringLiteral("PCL/ValiaCraftLauncher"));
         QDir().mkpath(recordDir);
         const QString recordPath =
             QDir(recordDir).absoluteFilePath(QStringLiteral("%1-%2.json")

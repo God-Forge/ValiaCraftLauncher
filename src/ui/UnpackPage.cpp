@@ -181,7 +181,7 @@ void UnpackPage::onBrowsePackage()
 {
     const QString path = QFileDialog::getOpenFileName(
         this, QStringLiteral("选择整合包"), m_packageEdit->text().trimmed(),
-        QStringLiteral("mcPacker 整合包 (*.mcpk);;ZIP 压缩包 (*.zip);;所有文件 (*.*)"));
+        QStringLiteral("ValiaCraftLauncher 整合包 (*.mcpk);;ZIP 压缩包 (*.zip);;所有文件 (*.*)"));
     if (path.isEmpty())
         return;
     setPackage(path);

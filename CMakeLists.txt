@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.21)
 
-project(mcPacker VERSION 0.1.0 LANGUAGES CXX)
+project(ValiaCraftLauncher VERSION 0.1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -70,8 +70,8 @@ set(MCPACKER_APP_SOURCES
     src/ui/MainWindow.cpp
 )
 
-add_executable(mcPacker WIN32 ${MCPACKER_APP_SOURCES})
-target_link_libraries(mcPacker PRIVATE mcpacker_core Qt6::Widgets)
+add_executable(ValiaCraftLauncher WIN32 ${MCPACKER_APP_SOURCES})
+target_link_libraries(ValiaCraftLauncher PRIVATE mcpacker_core Qt6::Widgets)
 
 # 图标 / 版本资源：windres 需要能找到 app.ico
 if(MINGW)
@@ -79,8 +79,8 @@ if(MINGW)
         COMPILE_OPTIONS "-I${CMAKE_CURRENT_SOURCE_DIR}/src")
 endif()
 
-set_target_properties(mcPacker PROPERTIES
-    OUTPUT_NAME "mcPacker"
+set_target_properties(ValiaCraftLauncher PROPERTIES
+    OUTPUT_NAME "ValiaCraftLauncher"
     WIN32_EXECUTABLE TRUE
 )
 
@@ -95,20 +95,20 @@ if(WINDEPLOYQT_EXE)
     set(DEPLOY_DIR "${CMAKE_CURRENT_SOURCE_DIR}/dist")
     add_custom_target(deploy
         COMMAND ${CMAKE_COMMAND} -E make_directory "${DEPLOY_DIR}"
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<TARGET_FILE:mcPacker>" "${DEPLOY_DIR}/"
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<TARGET_FILE:ValiaCraftLauncher>" "${DEPLOY_DIR}/"
         COMMAND "${WINDEPLOYQT_EXE}" --no-translations --no-opengl-sw --no-system-d3d-compiler
-                "${DEPLOY_DIR}/mcPacker.exe"
-        COMMENT "部署 mcPacker 到 ${DEPLOY_DIR}（含 Qt 运行库）"
-        DEPENDS mcPacker
+                "${DEPLOY_DIR}/ValiaCraftLauncher.exe"
+        COMMENT "部署 ValiaCraftLauncher 到 ${DEPLOY_DIR}（含 Qt 运行库）"
+        DEPENDS ValiaCraftLauncher
     )
 endif()
 
-install(TARGETS mcPacker RUNTIME DESTINATION .)
+install(TARGETS ValiaCraftLauncher RUNTIME DESTINATION .)
 
 # ---------------------------------------------------------------------------
 # 命令行工具（控制台程序）：脚本化打包/解包 + 自动化自测
 # ---------------------------------------------------------------------------
-add_executable(mcPackerCli tools/mcPackerCli.cpp)
-target_link_libraries(mcPackerCli PRIVATE mcpacker_core)
-set_target_properties(mcPackerCli PROPERTIES OUTPUT_NAME "mcPackerCli")
-install(TARGETS mcPackerCli RUNTIME DESTINATION .)
+add_executable(ValiaCraftLauncherCli tools/ValiaCraftLauncherCli.cpp)
+target_link_libraries(ValiaCraftLauncherCli PRIVATE mcpacker_core)
+set_target_properties(ValiaCraftLauncherCli PROPERTIES OUTPUT_NAME "ValiaCraftLauncherCli")
+install(TARGETS ValiaCraftLauncherCli RUNTIME DESTINATION .)
